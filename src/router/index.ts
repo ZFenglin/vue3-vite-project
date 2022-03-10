@@ -2,6 +2,8 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 
 import AppLayout from '@/layout/app-layout.vue'
 
+import permissionRoutes from './modules/permission'
+
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -16,7 +18,8 @@ const routes: RouteRecordRaw[] = [
         path: '/login',
         name: 'login',
         component: () => import('../views/login/login-index.vue')
-      }
+      },
+      permissionRoutes
     ]
   }
 
