@@ -20,5 +20,12 @@ export default defineConfig({
       // '@': '绝对路径'
       '@': path.join(__dirname, './src')
     }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@import "@/styles/variable.scss";'
+      }
+    }
   }
 })
