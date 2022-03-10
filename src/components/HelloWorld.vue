@@ -1,17 +1,46 @@
 
 <template>
   <h1>{{ msg }}</h1>
-  <h1>{{ obj }}</h1>
-  <h1>{{ foo }}</h1>
+  <h1>props.msg推荐{{ props.msg }}</h1>
   <button
     type="button"
-    @click="count++"
+    @click="increment"
   >
     count is: {{ count }}
   </button>
 </template>
-<script  lang="ts">
 
+<script  lang="ts" setup>
+// 标签增加setup，则内部代码默认执行在setup中
+import { ref, PropType } from 'vue'
+interface User{
+  name:string,
+  age:number
+}
+
+const props = defineProps({
+  // 但是不要和本地重名，重名则本地为主
+  msg: {
+    type: String,
+    required: true
+  },
+  obj: {
+    type: Object as PropType<User>,
+    required: true // 必须要设置为必填项或者给一个默认值
+  }
+})
+
+const emit = defineEmits(['increment'])
+
+const count = ref(100)
+const increment = () => {
+  console.log(props.msg)
+  count.value++
+  emit('increment')
+}
+</script>
+
+<!-- <script  lang="ts">
 import { ref, defineComponent, PropType } from 'vue'
 
 interface User{
@@ -55,4 +84,4 @@ export default defineComponent({
     }
   }
 })
-</script>
+</script> -->

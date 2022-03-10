@@ -8,6 +8,9 @@ const helloWorld = ref<InstanceType<typeof HelloWorld>|null>(null)
 onMounted(() => {
   console.log(helloWorld.value)
 })
+const increment = () => {
+  console.log('increment-emit')
+}
 </script>
 
 <template>
@@ -19,6 +22,7 @@ onMounted(() => {
     ref="helloWorld"
     msg="Hello Vue 3 + TypeScript + Vite !!!"
     :obj="{name:'zfl', age: 1}"
+    @increment="increment"
   />
 </template>
 
