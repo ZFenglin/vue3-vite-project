@@ -1,7 +1,13 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+import { onMounted, ref } from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
+// InstanceType TS的类型工具，获取一个类类型
+const helloWorld = ref<InstanceType<typeof HelloWorld>|null>(null)
+onMounted(() => {
+  console.log(helloWorld.value)
+})
 </script>
 
 <template>
@@ -9,7 +15,11 @@ import HelloWorld from './components/HelloWorld.vue'
     alt="Vue logo"
     src="./assets/logo.png"
   >
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <HelloWorld
+    ref="helloWorld"
+    msg="Hello Vue 3 + TypeScript + Vite !!!"
+    :obj="{name:'zfl', age: 1}"
+  />
 </template>
 
 <style>

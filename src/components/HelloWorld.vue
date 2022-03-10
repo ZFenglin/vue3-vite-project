@@ -1,69 +1,58 @@
-<script setup lang="ts">
-import { ref, defineProps } from 'vue'
-
-defineProps<{ msg: string }>()
-
-const count = ref(0)
-</script>
 
 <template>
   <h1>{{ msg }}</h1>
-
-  <p>
-    Recommended IDE setup:
-    <a
-      href="https://code.visualstudio.com/"
-      target="_blank"
-    >VSCode</a>
-    +
-    <a
-      href="https://github.com/johnsoncodehk/volar"
-      target="_blank"
-    >Volar</a>
-  </p>
-
-  <p>See <code>README.md</code> for more information.</p>
-
-  <p>
-    <a
-      href="https://vitejs.dev/guide/features.html"
-      target="_blank"
-    >
-      Vite Docs
-    </a>
-    |
-    <a
-      href="https://v3.vuejs.org/"
-      target="_blank"
-    >Vue 3 Docs</a>
-  </p>
-
+  <h1>{{ obj }}</h1>
+  <h1>{{ foo }}</h1>
   <button
     type="button"
     @click="count++"
   >
     count is: {{ count }}
   </button>
-  <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
-  </p>
 </template>
+<script  lang="ts">
 
-<style scoped>
-a {
-  color: #42b983;
-}
+import { ref, defineComponent, PropType } from 'vue'
 
-label {
-  margin: 0 0.5em;
-  font-weight: bold;
+interface User{
+  name:string,
+  age:number
 }
+export default defineComponent({
+  name: 'HelloWorld',
+  props: {
+    msg: {
+      type: String,
+      required: true
+    },
+    obj: {
+      type: Object as PropType<User>,
+      required: true // 必须要设置为必填项或者给一个默认值
+    }
+  },
 
-code {
-  background-color: #eee;
-  padding: 2px 4px;
-  border-radius: 4px;
-  color: #304455;
-}
-</style>
+  setup (props) {
+    const count = ref(0)
+    // const filtered = props.msg.filter(p => p.value) // 会校验string上不存在filter
+
+    // 泛型定义数据格式
+    const foo = ref<{a:Number, b: string}|null>(null)
+    foo.value = {
+      a: 1,
+      b: '1'
+    }
+    // DOM模板引用
+    const title = ref<HTMLHeadElement|null>(null)
+
+    // onMounted(() => {
+    //   console.log(title.value)
+    // })
+
+    return {
+      count,
+      foo,
+      title
+    }
+  }
+})
+</script>
