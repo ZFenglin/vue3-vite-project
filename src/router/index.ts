@@ -12,7 +12,10 @@ const routes: RouteRecordRaw[] = [
       {
         path: '', // '' 则为默认子路由
         name: 'home',
-        component: () => import('../views/home/home-index.vue')
+        component: () => import('../views/home/home-index.vue'),
+        meta: {
+          title: '首页'
+        }
       },
       {
         path: '/login',
