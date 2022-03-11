@@ -7,6 +7,7 @@
       <el-header>
         <AppCollapse />
         <AppBreadcrumb />
+        <AppFullscreen />
       </el-header>
       <el-main>
         <router-view />
@@ -18,6 +19,7 @@
 <script lang="ts" setup>
 import AppBreadcrumb from './components/app-breadcrumb.vue'
 import AppCollapse from './components/app-collapse.vue'
+import AppFullscreen from './components/app-fullscreen.vue'
 import AppMenu from './components/app-menu.vue'
 </script>
 

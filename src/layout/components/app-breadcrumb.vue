@@ -24,6 +24,7 @@ const routes = computed(() => {
 
 <style lang="scss" scoped>
 .el-breadcrumb{
+    flex-grow: 1;
     height: 100%;
     display: flex;
     align-items: center;
